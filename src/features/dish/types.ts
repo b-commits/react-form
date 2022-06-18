@@ -2,7 +2,7 @@ export type DishType = Pizza | Sandwich | Soup;
 
 export interface Dish {
   name: string;
-  preparationTime: number;
+  preparationTime: string;
   type: DishType;
 }
 

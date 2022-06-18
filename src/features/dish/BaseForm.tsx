@@ -1,55 +1,40 @@
 /** @jsxImportSource @emotion/react */
-import { useForm, SubmitHandler, Controller } from 'react-hook-form';
-import { Dish } from './definitions';
-import { TextField, Select, MenuItem, Stack } from '@mui/material';
-import DishTimeField from './components/DishTimeField';
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { Dish } from './types';
+import { Stack } from '@mui/material';
 import { formWrapper } from './Dish.module.style';
+import { resolvedSchema } from './validation';
+import { FormProvider } from 'react-hook-form';
+import { DevTool } from '@hookform/devtools';
+import NameField from './components/NameField';
+import PreparationTimeField from './components/PreparationTimeField';
+import { DishTypeField } from './components/DishTypeField';
 
-export default function BaseForm() {
-  const { handleSubmit, control, getValues } = useForm<Dish>();
-  const values = getValues();
-  const onSubmit: SubmitHandler<Dish> = (data) => alert(JSON.stringify(data));
+const BaseForm = () => {
+  const methods = useForm<Dish>({ resolver: resolvedSchema, mode: 'onChange' });
+  const onSubmit: SubmitHandler<Dish> = (data: Dish) => {};
 
   return (
-    <form css={formWrapper} onSubmit={handleSubmit(onSubmit)}>
-      <Stack
-        direction="column"
-        justifyContent="center"
-        alignItems="center"
-        spacing={3}
-      >
-        <Controller
-          name="name"
-          control={control}
-          defaultValue=""
-          render={({ field }) => <TextField label="Name" {...field} />}
-        />
-        <Controller
-          name="preparationTime"
-          control={control}
-          defaultValue={123}
-          render={({ field }) => <DishTimeField />}
-        />
-        <Controller
-          name="type"
-          control={control}
-          render={({ field }) => (
-            <Select
-              {...field}
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
-              value={10}
-              label="Age"
-              onChange={() => {}}
-            >
-              <MenuItem value={10}>10</MenuItem>
-              <MenuItem value={20}>20</MenuItem>
-              <MenuItem value={30}>30</MenuItem>
-            </Select>
-          )}
-        />
-        <input type="submit" />
-      </Stack>
-    </form>
+    <FormProvider {...methods}>
+      <form css={formWrapper} onSubmit={methods.handleSubmit(onSubmit)}>
+        <Stack
+          direction="column"
+          justifyContent="center"
+          alignItems="center"
+          spacing={3}
+        >
+          <NameField name="name" label="Name" />
+          <PreparationTimeField
+            name="preparationTime"
+            label="Preparation Time"
+          />
+          <DishTypeField />
+          <input type="submit" />
+        </Stack>
+        <DevTool control={methods.control} />
+      </form>
+    </FormProvider>
   );
-}
+};
+
+export default BaseForm;
