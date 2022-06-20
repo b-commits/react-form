@@ -15,8 +15,6 @@ const schema = yup.object({
     .min(10, DishValidationErrors.NAME_LENGTH_EXCEEDED),
   preparationTime: yup.string().required(DishValidationErrors.REQUIRED),
   type: yup.string().required(DishValidationErrors.REQUIRED),
-  numSlices: yup.number().max(10).required(DishValidationErrors.REQUIRED),
-  diameter: yup.number().required(DishValidationErrors.REQUIRED),
 });
 
-export const resolvedSchema = yupResolver(schema);
+export const validationSchema = yupResolver(schema);

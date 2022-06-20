@@ -1,11 +1,6 @@
+import { Pizza, Sandwich, Soup } from '../../definitions/types';
+
 export default interface FieldInputProps {
-  //TODO: this should be a union of types
-  name:
-    | 'name'
-    | 'preparationTime'
-    | 'spiciness'
-    | 'numSlices'
-    | 'type'
-    | 'diameter';
+  name: keyof Pizza | keyof Soup | keyof Sandwich;
   label: string;
 }

@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { RootState } from '../../../app/store';
-import { Dish } from '../definitions/types';
+import { Dish, DishTypes } from '../definitions/types';
 
 export const BASE_SLICE_NAME: string = 'dish';
 
@@ -18,8 +18,8 @@ export interface DishState {
 const initialDish: Dish = {
   name: 'Ramen',
   preparationTime: '15',
-  type: 'Pizza',
-  numSlices: 5,
+  type: DishTypes.PIZZA,
+  numPizzaSlices: 5,
   diameter: 5.5,
 };
 

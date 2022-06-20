@@ -1,4 +1,4 @@
-export const COLOR_SCALE: string[] = [
+export const SPICINESS_COLOR_SCALE: string[] = [
   'primary',
   '#F45E18',
   '#F45911',
@@ -11,3 +11,5 @@ export const COLOR_SCALE: string[] = [
   '#BD4209',
   '#943407',
 ];
+
+export const SPICINESS_DEFAULT_VALUE: number = SPICINESS_COLOR_SCALE.length / 2;

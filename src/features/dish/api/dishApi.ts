@@ -1,12 +1,17 @@
-export const dishApi = fetch(process.env.REACT_APP_API_URL!, {
+import axios from 'axios';
+import { Dish } from '../definitions/types';
+import { convertToDTO } from './dtoConverter';
+
+const DISH_ENDPOINT: string = '/dishes';
+
+export const dishApi = axios.create({
+  baseURL: process.env.REACT_APP_API_URL,
   headers: {
     Accept: 'application/json',
-    'Content-Type': 'application/json',
   },
-  method: 'POST',
-  body: JSON.stringify({ a: 1, b: 2 }),
 });
 
-// export const postDish = (dish: Dish): Promise<Dish> => {
-//   dishApi.then();
-// };
+export const postDish = async (dish: Dish): Promise<Dish> => {
+  const response = await dishApi.post(DISH_ENDPOINT, convertToDTO(dish));
+  return response.data;
+};

@@ -1,11 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Dish } from '../definitions/types';
-import { Stack, Button } from '@mui/material';
+import { Dish, DishTypes } from '../definitions/types';
+import { Stack, Button, CircularProgress } from '@mui/material';
 import { formWrapper } from './Dish.module.style';
-import { resolvedSchema } from './validation';
+import { validationSchema } from './validation';
 import { FormProvider } from 'react-hook-form';
+import { useState } from 'react';
 import { DevTool } from '@hookform/devtools';
+import { postDish } from '../api/dishApi';
 import NameField from './formInputs/NameField';
 import PreparationTimeField from './formInputs/PreparationTimeField';
 import SpicinessField from './formInputs/SpicinessField';
@@ -13,9 +15,18 @@ import DishTypeField from './formInputs/DishTypeField';
 import NumberField from './formInputs/NumberField';
 
 const BaseForm = () => {
-  const methods = useForm<Dish>({ resolver: resolvedSchema, mode: 'onChange' });
-  const onSubmit: SubmitHandler<Dish> = (data: Dish) => {};
-  const type = methods.watch('type');
+  const [submitting, isSubmitting] = useState<boolean>(false);
+  const methods = useForm<Dish>({
+    resolver: validationSchema,
+    mode: 'onChange',
+  });
+  const type: DishTypes = methods.watch('type');
+
+  const onSubmit: SubmitHandler<Dish> = async (data: Dish) => {
+    isSubmitting(true);
+    await postDish(data);
+    isSubmitting(false);
+  };
 
   return (
     <FormProvider {...methods}>
@@ -32,19 +43,23 @@ const BaseForm = () => {
             label="Preparation Time"
           />
           <DishTypeField />
-          {type === 'Pizza' && (
+          {type === DishTypes.PIZZA && (
             <>
               <NumberField name="numSlices" label="Pizza slices" />
               <NumberField name="diameter" label="Diameter [cm]" />
             </>
           )}
-          {type === 'Sandwich' && (
+          {type === DishTypes.SANDWICH && (
             <NumberField name="numSlices" label="Bread slices" />
           )}
-          {type === 'Soup' && <SpicinessField />}
-          <Button fullWidth variant="contained" type="submit">
-            Submit
-          </Button>
+          {type === DishTypes.SOUP && <SpicinessField />}
+          {submitting ? (
+            <CircularProgress />
+          ) : (
+            <Button fullWidth variant="contained" type="submit">
+              Submit
+            </Button>
+          )}
         </Stack>
         <DevTool control={methods.control} />
       </form>
