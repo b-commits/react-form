@@ -9,8 +9,10 @@ const NameField = ({ name, label }: FieldInputProps) => {
     <Controller
       name={name}
       control={control}
+      defaultValue=""
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <TextField
+          placeholder="Philly Cheesesteak"
           size="small"
           onChange={onChange}
           helperText={error ? error.message : ''}

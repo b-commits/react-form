@@ -1,18 +1,20 @@
 /** @jsxImportSource @emotion/react */
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Dish } from './types';
-import { Stack } from '@mui/material';
+import { Stack, Button } from '@mui/material';
 import { formWrapper } from './Dish.module.style';
 import { resolvedSchema } from './validation';
 import { FormProvider } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
 import NameField from './components/NameField';
 import PreparationTimeField from './components/PreparationTimeField';
+import SpicinessField from './components/SpicinessField';
 import { DishTypeField } from './components/DishTypeField';
 
 const BaseForm = () => {
   const methods = useForm<Dish>({ resolver: resolvedSchema, mode: 'onChange' });
   const onSubmit: SubmitHandler<Dish> = (data: Dish) => {};
+  const type = methods.watch('type');
 
   return (
     <FormProvider {...methods}>
@@ -29,7 +31,12 @@ const BaseForm = () => {
             label="Preparation Time"
           />
           <DishTypeField />
-          <input type="submit" />
+          {type == 'Pizza' && <div>Pizza Details</div>}
+          {type == 'Sandwich' && <div>Sandwich Details</div>}
+          {type == 'Soup' && <SpicinessField />}
+          <Button fullWidth variant="contained" type="submit">
+            Submit
+          </Button>
         </Stack>
         <DevTool control={methods.control} />
       </form>

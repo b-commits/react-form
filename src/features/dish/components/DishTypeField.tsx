@@ -2,10 +2,10 @@ import { Controller, useFormContext } from 'react-hook-form';
 import { Dish } from '../types';
 import {
   FormControl,
-  FormControlLabel,
-  FormLabel,
-  RadioGroup,
-  Radio,
+  InputLabel,
+  Select,
+  MenuItem,
+  FormHelperText,
 } from '@mui/material';
 
 export const DishTypeField = () => {
@@ -13,19 +13,24 @@ export const DishTypeField = () => {
   return (
     <Controller
       name="type"
-      defaultValue={{ numSlices: 3 }}
       control={control}
+      defaultValue=""
       render={({ field: { onChange, value }, fieldState: { error } }) => (
-        <FormControl>
-          <RadioGroup row>
-            <FormControlLabel value="soup" control={<Radio />} label="Soup" />
-            <FormControlLabel value="pizza" control={<Radio />} label="Pizza" />
-            <FormControlLabel
-              value="sandwich"
-              control={<Radio />}
-              label="Sandwich"
-            />
-          </RadioGroup>
+        <FormControl fullWidth size="small" error={!!error}>
+          <InputLabel id="dish-type-select">Dish Type</InputLabel>
+          <Select
+            error={!!error}
+            labelId="dish-type-select"
+            id="demo-select-small"
+            value={value}
+            label="Dish Type"
+            onChange={onChange}
+          >
+            <MenuItem value={'Pizza'}>Pizza</MenuItem>
+            <MenuItem value={'Sandwich'}>Sandwich</MenuItem>
+            <MenuItem value={'Soup'}>Soup</MenuItem>
+          </Select>
+          {error && <FormHelperText>{error.message}</FormHelperText>}
         </FormControl>
       )}
     />

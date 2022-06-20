@@ -15,12 +15,12 @@ export interface DishState {
   status: Status.IDLE | Status.LOADING | Status.FAILED;
 }
 
-const initialDish = {
+const initialDish: Dish = {
   name: 'Ramen',
   preparationTime: '15',
-  type: {
-    spiciness: 10,
-  },
+  type: 'Pizza',
+  numSlices: 5,
+  diameter: 5.5,
 };
 
 const initialState: DishState = {

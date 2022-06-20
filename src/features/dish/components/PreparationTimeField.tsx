@@ -8,7 +8,7 @@ const PreparationTimeField = ({ name, label }: FieldInputProps) => {
   const { control } = useFormContext<Dish>();
   return (
     <Controller
-      name="preparationTime"
+      name={name}
       control={control}
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <NumberFormat
