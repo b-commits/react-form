@@ -1,6 +1,11 @@
-import { Dish } from '../types';
-
 export interface FieldInputProps {
-  name: keyof Dish;
+  //TODO: this should be a union of types
+  name:
+    | 'name'
+    | 'preparationTime'
+    | 'spiciness'
+    | 'numSlices'
+    | 'type'
+    | 'diameter';
   label: string;
 }

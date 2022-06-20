@@ -10,6 +10,7 @@ import NameField from './components/NameField';
 import PreparationTimeField from './components/PreparationTimeField';
 import SpicinessField from './components/SpicinessField';
 import { DishTypeField } from './components/DishTypeField';
+import NumberField from './components/NumberField';
 
 const BaseForm = () => {
   const methods = useForm<Dish>({ resolver: resolvedSchema, mode: 'onChange' });
@@ -31,9 +32,16 @@ const BaseForm = () => {
             label="Preparation Time"
           />
           <DishTypeField />
-          {type == 'Pizza' && <div>Pizza Details</div>}
-          {type == 'Sandwich' && <div>Sandwich Details</div>}
-          {type == 'Soup' && <SpicinessField />}
+          {type === 'Pizza' && (
+            <>
+              <NumberField name="numSlices" label="Pizza slices" />
+              <NumberField name="diameter" label="Diameter [cm]" />
+            </>
+          )}
+          {type === 'Sandwich' && (
+            <NumberField name="numSlices" label="Bread slices" />
+          )}
+          {type === 'Soup' && <SpicinessField />}
           <Button fullWidth variant="contained" type="submit">
             Submit
           </Button>

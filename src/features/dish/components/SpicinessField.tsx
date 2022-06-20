@@ -12,6 +12,7 @@ const SpicinessField = () => {
 
   //TODO: refactor this hsit
   const onSliderChange = (e: any, func: any) => {
+    func(e);
     setSliderValue(e.target.value);
   };
 
