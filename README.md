@@ -5,7 +5,7 @@ In order to run the project, please clone the repo to your local machine and run
     npm install
     npm start
 
-Alternatively, you can visit the following URL and try ou the live demo yourself:
+Alternatively, you can visit the following URL and try out the live demo yourself:
 [255.255.255.0](www.placeholder.ocm)
 
 |                  | Description |
