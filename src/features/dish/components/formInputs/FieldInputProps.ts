@@ -1,4 +1,4 @@
-export interface FieldInputProps {
+export default interface FieldInputProps {
   //TODO: this should be a union of types
   name:
     | 'name'

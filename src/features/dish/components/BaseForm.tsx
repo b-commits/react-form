@@ -1,16 +1,16 @@
 /** @jsxImportSource @emotion/react */
 import { useForm, SubmitHandler } from 'react-hook-form';
-import { Dish } from './types';
+import { Dish } from '../definitions/types';
 import { Stack, Button } from '@mui/material';
 import { formWrapper } from './Dish.module.style';
 import { resolvedSchema } from './validation';
 import { FormProvider } from 'react-hook-form';
 import { DevTool } from '@hookform/devtools';
-import NameField from './components/NameField';
-import PreparationTimeField from './components/PreparationTimeField';
-import SpicinessField from './components/SpicinessField';
-import { DishTypeField } from './components/DishTypeField';
-import NumberField from './components/NumberField';
+import NameField from './formInputs/NameField';
+import PreparationTimeField from './formInputs/PreparationTimeField';
+import SpicinessField from './formInputs/SpicinessField';
+import DishTypeField from './formInputs/DishTypeField';
+import NumberField from './formInputs/NumberField';
 
 const BaseForm = () => {
   const methods = useForm<Dish>({ resolver: resolvedSchema, mode: 'onChange' });

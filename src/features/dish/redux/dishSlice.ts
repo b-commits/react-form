@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { RootState } from '../../app/store';
-import { Dish } from './types';
+import { RootState } from '../../../app/store';
+import { Dish } from '../definitions/types';
 
 export const BASE_SLICE_NAME: string = 'dish';
 

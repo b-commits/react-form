@@ -1,4 +1,4 @@
-import BaseForm from './features/dish/BaseForm';
+import BaseForm from './features/dish/components/BaseForm';
 import Header from './shared/Header';
 
 function App() {

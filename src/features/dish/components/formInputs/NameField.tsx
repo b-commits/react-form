@@ -1,7 +1,7 @@
 import { TextField } from '@mui/material';
 import { useFormContext, Controller } from 'react-hook-form';
-import { Dish } from '../types';
-import { FieldInputProps } from './FieldInputProps';
+import { Dish } from '../../definitions/types';
+import FieldInputProps from './FieldInputProps';
 
 const NameField = ({ name, label }: FieldInputProps) => {
   const { control } = useFormContext<Dish>();

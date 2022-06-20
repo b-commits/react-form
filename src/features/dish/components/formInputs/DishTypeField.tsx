@@ -1,5 +1,5 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import { Dish } from '../types';
+import { Dish } from '../../definitions/types';
 import {
   FormControl,
   InputLabel,
@@ -8,7 +8,7 @@ import {
   FormHelperText,
 } from '@mui/material';
 
-export const DishTypeField = () => {
+const DishTypeField = () => {
   const { control } = useFormContext<Dish>();
   return (
     <Controller
@@ -36,3 +36,5 @@ export const DishTypeField = () => {
     />
   );
 };
+
+export default DishTypeField;

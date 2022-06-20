@@ -2,8 +2,8 @@
 import { FormLabel, Slider } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useState } from 'react';
-import { COLOR_SCALE } from '../utils/ColorScale';
-import { Dish } from '../types';
+import { COLOR_SCALE } from '../../utils/ColorScale';
+import { Dish } from '../../definitions/types';
 import { formLabel } from '../Dish.module.style';
 
 const SpicinessField = () => {

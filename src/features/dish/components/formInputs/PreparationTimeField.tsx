@@ -1,8 +1,8 @@
 import { Controller, useFormContext } from 'react-hook-form';
-import NumberFormat from 'react-number-format';
 import { TextField, TextFieldProps } from '@mui/material';
-import { Dish } from '../types';
-import { FieldInputProps } from './FieldInputProps';
+import { Dish } from '../../definitions/types';
+import FieldInputProps from './FieldInputProps';
+import NumberFormat from 'react-number-format';
 
 const PreparationTimeField = ({ name, label }: FieldInputProps) => {
   const { control } = useFormContext<Dish>();
@@ -18,7 +18,7 @@ const PreparationTimeField = ({ name, label }: FieldInputProps) => {
           error={!!error}
           label={label}
           customInput={PreparedTextField}
-          format={cardExpiry}
+          format={preparationTimeFormat}
           mask="_"
         />
       )}
@@ -38,28 +38,26 @@ const PreparedTextField = (props: TextFieldProps) => {
   );
 };
 
-function limit(val: any, max: any) {
-  if (val.length === 1 && val[0] > max[0]) {
-    val = '0' + val;
-  }
+/**
+ *
+ * @param inputValue a string representation of the preparation time form input
+ * @param limit maximum number of a single section (input seperated by ":")
+ * @returns if the value exceeds limit, returns limit
+ */
+const limitInputValue = (inputValue: string, limit: string): string => {
+  return inputValue > limit ? limit : inputValue;
+};
 
-  if (val.length === 2) {
-    if (Number(val) === 0) {
-      val = '01';
-    } else if (val > max) {
-      val = max;
-    }
-  }
-
-  return val;
-}
-
-function cardExpiry(val: any) {
-  let hours = limit(val.substring(0, 2), '99');
-  let minutes = limit(val.substring(2, 4), '59');
-  let seconds = limit(val.substring(4, 6), '59');
-
+/**
+ *
+ * @param inputValue a string representation of the preparation time form input
+ * @returns a format used in the PreparationTimeField's input
+ */
+const preparationTimeFormat = (inputValue: string): string => {
+  let hours = limitInputValue(inputValue.substring(0, 2), '99');
+  let minutes = limitInputValue(inputValue.substring(2, 4), '59');
+  let seconds = limitInputValue(inputValue.substring(4, 6), '59');
   return hours + ':' + minutes + (seconds.length ? ':' + seconds : '');
-}
+};
 
 export default PreparationTimeField;
