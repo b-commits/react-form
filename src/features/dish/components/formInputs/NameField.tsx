@@ -1,9 +1,9 @@
 import { TextField } from '@mui/material';
 import { useFormContext, Controller } from 'react-hook-form';
 import { Dish } from '../../definitions/types';
-import FieldInputProps from './FieldInputProps';
+import { TextFieldInputProps } from './FieldInputProps';
 
-const NameField = ({ name, label }: FieldInputProps) => {
+const NameField = ({ name, label }: TextFieldInputProps) => {
   const { control } = useFormContext<Dish>();
   return (
     <Controller
@@ -15,7 +15,7 @@ const NameField = ({ name, label }: FieldInputProps) => {
           placeholder="Philly Cheesesteak"
           size="small"
           onChange={onChange}
-          helperText={error ? error.message : ''}
+          helperText={error ? error.message : ' '}
           error={!!error}
           value={value}
           label={label}

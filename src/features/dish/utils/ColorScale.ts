@@ -12,4 +12,6 @@ export const SPICINESS_COLOR_SCALE: string[] = [
   '#943407',
 ];
 
-export const SPICINESS_DEFAULT_VALUE: number = SPICINESS_COLOR_SCALE.length / 2;
+export const SPICINESS_DEFAULT_VALUE: number = Math.floor(
+  SPICINESS_COLOR_SCALE.length / 2
+);

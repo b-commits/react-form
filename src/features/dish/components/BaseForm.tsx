@@ -2,7 +2,7 @@
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { Dish, DishTypes } from '../definitions/types';
 import { Stack, Button, CircularProgress } from '@mui/material';
-import { formWrapper } from './Dish.module.style';
+import { formWrapper, form } from './Dish.module.style';
 import { validationSchema } from './validation';
 import { FormProvider } from 'react-hook-form';
 import { useState } from 'react';
@@ -32,10 +32,11 @@ const BaseForm = () => {
     <FormProvider {...methods}>
       <form css={formWrapper} onSubmit={methods.handleSubmit(onSubmit)}>
         <Stack
+          css={form}
           direction="column"
           justifyContent="center"
           alignItems="center"
-          spacing={3}
+          spacing={2}
         >
           <NameField name="name" label="Name" />
           <PreparationTimeField
@@ -45,12 +46,12 @@ const BaseForm = () => {
           <DishTypeField />
           {type === DishTypes.PIZZA && (
             <>
-              <NumberField name="numSlices" label="Pizza slices" />
-              <NumberField name="diameter" label="Diameter [cm]" />
+              <NumberField name="numPizzaSlices" label="Pizza slices" />
+              <NumberField name="diameter" label="Diameter [cm]" allowDecimal />
             </>
           )}
           {type === DishTypes.SANDWICH && (
-            <NumberField name="numSlices" label="Bread slices" />
+            <NumberField name="numBreadSlices" label="Bread slices" />
           )}
           {type === DishTypes.SOUP && <SpicinessField />}
           {submitting ? (

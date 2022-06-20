@@ -1,10 +1,10 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { TextField, TextFieldProps } from '@mui/material';
 import { Dish } from '../../definitions/types';
-import FieldInputProps from './FieldInputProps';
+import { TextFieldInputProps } from './FieldInputProps';
 import NumberFormat from 'react-number-format';
 
-const PreparationTimeField = ({ name, label }: FieldInputProps) => {
+const PreparationTimeField = ({ name, label }: TextFieldInputProps) => {
   const { control } = useFormContext<Dish>();
   return (
     <Controller
@@ -14,7 +14,7 @@ const PreparationTimeField = ({ name, label }: FieldInputProps) => {
         <NumberFormat
           onChange={onChange}
           value={value}
-          helperText={error ? error.message : ''}
+          helperText={error ? error.message : ' '}
           error={!!error}
           label={label}
           customInput={PreparedTextField}

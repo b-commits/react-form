@@ -10,3 +10,12 @@ export const formWrapper = css({
 export const formLabel = css({
   width: '100%',
 });
+
+export const form = css({
+  height: '100%',
+  width: '45%',
+});
+
+export const numberField = css({
+  marginBottom: '20px',
+});

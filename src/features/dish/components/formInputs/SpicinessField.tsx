@@ -2,13 +2,18 @@
 import { FormLabel, Slider } from '@mui/material';
 import { Controller, useFormContext } from 'react-hook-form';
 import { useState } from 'react';
-import { SPICINESS_COLOR_SCALE } from '../../utils/ColorScale';
+import {
+  SPICINESS_COLOR_SCALE,
+  SPICINESS_DEFAULT_VALUE,
+} from '../../utils/ColorScale';
 import { Dish } from '../../definitions/types';
 import { formLabel } from '../Dish.module.style';
 
 const SpicinessField = () => {
   const { control } = useFormContext<Dish>();
-  const [sliderValue, setSliderValue] = useState<number | number[]>(5);
+  const [sliderValue, setSliderValue] = useState<number | number[]>(
+    SPICINESS_DEFAULT_VALUE
+  );
 
   const onSliderValueChange = (
     e: any,
@@ -21,7 +26,7 @@ const SpicinessField = () => {
   return (
     <Controller
       name="spiciness"
-      defaultValue={5}
+      defaultValue={SPICINESS_DEFAULT_VALUE}
       control={control}
       render={({ field: { onChange }, fieldState: { error } }) => (
         <>
