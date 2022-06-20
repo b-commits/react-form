@@ -17,3 +17,7 @@ Alternatively, you can visit the following URL and try out the live demo yoursel
 ## Technologies
 
 Since [Redux Form ](https://redux-form.com/8.3.0/) appears to be deprecated and is no longer supported, the project uses [React Hook Form](https://react-hook-form.com/) instead to handle its form's state. The state is also stored globally with [Redux Toolkit](https://redux-toolkit.js.org/).
+
+## Deployment
+
+The [Docker](https://www.docker.com/) container of this app is hosted on a [DigitalOcean](https://www.digitalocean.com/community) VPS.
