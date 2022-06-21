@@ -2,6 +2,7 @@
 
 #Docker
 Dockerfile
+.dockerignore
 
 # dependencies
 /node_modules

@@ -12,8 +12,6 @@ export const dishApi = axios.create({
 });
 
 export const postDish = async (dish: Dish): Promise<Dish> => {
-  console.log(convertToDTO(dish));
   const response = await dishApi.post(DISH_ENDPOINT, convertToDTO(dish));
-  console.log(response);
   return response.data;
 };
