@@ -14,7 +14,6 @@ Alternatively, you can visit the following URL and try out the live demo yoursel
 | NPM              | v8.1.0                                          |
 | Time to complete | 10 hours                                        |
 | Live demo        | [165.22.85.111:3000](http://165.22.85.111:3000) |
-| Author           | [Bartek Gościcki](https://bglog.vercel.app/)    |
 
 ## Technologies
 
