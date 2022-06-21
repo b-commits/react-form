@@ -23,27 +23,42 @@ const schema = yup.object({
     .min(8, ValidationErrors.REQUIRED)
     .required(ValidationErrors.REQUIRED),
   type: yup.string().required(ValidationErrors.REQUIRED),
+  numBreadSlices: yup
+    .number()
+    .when('type', {
+      is: DishTypes.SANDWICH,
+      then: yup
+        .number()
+        .typeError(ValidationErrors.REQUIRED)
+        .required(ValidationErrors.REQUIRED),
+    })
+    .typeError(ValidationErrors.REQUIRED)
+    .min(1, ValidationErrors.REQUIRED)
+    .max(100, ValidationErrors.TOO_MANY_SLICES),
   numPizzaSlices: yup
     .number()
+    .when('type', {
+      is: DishTypes.PIZZA,
+      then: yup
+        .number()
+        .typeError(ValidationErrors.REQUIRED)
+        .required(ValidationErrors.REQUIRED),
+    })
     .typeError(ValidationErrors.REQUIRED)
-    .min(0, ValidationErrors.REQUIRED)
+    .min(1, ValidationErrors.REQUIRED)
     .max(100, ValidationErrors.TOO_MANY_SLICES),
   diameter: yup
     .number()
-    .min(12)
     .when('type', {
       is: DishTypes.PIZZA,
-      then: yup.string().required(ValidationErrors.REQUIRED),
-    }),
-  numBreadSlices: yup
-    .number()
+      then: yup
+        .number()
+        .typeError(ValidationErrors.REQUIRED)
+        .required(ValidationErrors.REQUIRED),
+    })
     .typeError(ValidationErrors.REQUIRED)
-    .min(0, ValidationErrors.REQUIRED)
-    .max(100, ValidationErrors.TOO_MANY_SLICES)
-    .when('type', {
-      is: DishTypes.SANDWICH,
-      then: yup.string().required(ValidationErrors.REQUIRED),
-    }),
+    .min(12, ValidationErrors.REQUIRED)
+    .max(42.5, ValidationErrors.INSUFFICIENT_DIAMATER),
 });
 
 export const validationSchema = yupResolver(schema);

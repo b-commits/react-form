@@ -1,4 +1,6 @@
+/** @jsxImportSource @emotion/react */
 import { Controller, useFormContext } from 'react-hook-form';
+import { typeField } from '../Dish.module.style';
 import { Dish, DishTypes } from '../../definitions/types';
 import {
   FormControl,
@@ -18,17 +20,20 @@ const DishTypeField = () => {
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <FormControl fullWidth size="small" error={!!error}>
           <InputLabel id="dish-type-select">Dish Type</InputLabel>
-          <Select
-            error={!!error}
-            labelId="dish-type-select"
-            value={value}
-            label="Dish Type"
-            onChange={onChange}
-          >
-            <MenuItem value={DishTypes.PIZZA}>Pizza</MenuItem>
-            <MenuItem value={DishTypes.SANDWICH}>Sandwich</MenuItem>
-            <MenuItem value={DishTypes.SOUP}>Soup</MenuItem>
-          </Select>
+          <div css={typeField}>
+            <Select
+              css={typeField}
+              error={!!error}
+              labelId="dish-type-select"
+              value={value}
+              label="Dish Type"
+              onChange={onChange}
+            >
+              <MenuItem value={DishTypes.PIZZA}>Pizza</MenuItem>
+              <MenuItem value={DishTypes.SANDWICH}>Sandwich</MenuItem>
+              <MenuItem value={DishTypes.SOUP}>Soup</MenuItem>
+            </Select>
+          </div>
           {error && <FormHelperText>{error.message}</FormHelperText>}
         </FormControl>
       )}

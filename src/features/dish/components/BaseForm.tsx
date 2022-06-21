@@ -23,6 +23,7 @@ const BaseForm = () => {
   const type: DishTypes = methods.watch('type');
 
   const onSubmit: SubmitHandler<Dish> = async (data: Dish) => {
+    console.log('submitting');
     isSubmitting(true);
     await postDish(data);
     isSubmitting(false);
@@ -61,6 +62,15 @@ const BaseForm = () => {
               Submit
             </Button>
           )}
+          <Button
+            variant="outlined"
+            fullWidth
+            onClick={() => {
+              methods.reset();
+            }}
+          >
+            Reset
+          </Button>
         </Stack>
         <DevTool control={methods.control} />
       </form>

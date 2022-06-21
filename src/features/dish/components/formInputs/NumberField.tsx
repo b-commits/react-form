@@ -1,9 +1,7 @@
-/** @jsxImportSource @emotion/react */
 import { TextField } from '@mui/material';
 import { useFormContext, Controller } from 'react-hook-form';
 import { Dish } from '../../definitions/types';
 import { NumberFieldInputProps } from './FieldInputProps';
-import { numberField } from '../Dish.module.style';
 
 const NumberField = ({ name, label, allowDecimal }: NumberFieldInputProps) => {
   const { control } = useFormContext<Dish>();
@@ -26,7 +24,6 @@ const NumberField = ({ name, label, allowDecimal }: NumberFieldInputProps) => {
           error={!!error}
           value={value}
           label={label}
-          css={numberField}
           fullWidth
           variant="outlined"
         />

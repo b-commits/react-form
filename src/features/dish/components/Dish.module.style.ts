@@ -16,6 +16,7 @@ export const form = css({
   width: '45%',
 });
 
-export const numberField = css({
-  marginBottom: '20px',
+export const typeField = css({
+  width: '100%',
+  marginBottom: '10px',
 });
