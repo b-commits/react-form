@@ -1,5 +1,5 @@
 import { Dish, DishTypes, DTO } from '../definitions/types';
-import { SPICINESS_DEFAULT_VALUE } from '../utils/ColorScale';
+import { SPICINESS_DEFAULT_VALUE } from '../utils/colorScale';
 
 export const convertToDTO = (dish: Dish) => {
   let dto: DTO = {

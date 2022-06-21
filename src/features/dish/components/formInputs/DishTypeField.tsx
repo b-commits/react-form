@@ -6,6 +6,7 @@ import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 const DishTypeField = () => {
   const { control } = useFormContext<Dish>();
+
   return (
     <Controller
       name="type"

@@ -5,7 +5,7 @@ import { useState } from 'react';
 import {
   SPICINESS_COLOR_SCALE,
   SPICINESS_DEFAULT_VALUE,
-} from '../../utils/ColorScale';
+} from '../../utils/colorScale';
 import { Dish } from '../../definitions/types';
 import { formLabel } from '../Dish.module.style';
 

@@ -24,7 +24,9 @@ const BaseForm = () => {
   const methods = useForm<Dish>({
     resolver: validationSchema,
     mode: 'onChange',
+    shouldUnregister: true,
   });
+
   const type: DishTypes = methods.watch('type');
 
   const handleSnackbarClosure = () => {

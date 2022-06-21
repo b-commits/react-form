@@ -1,6 +1,5 @@
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
-import { DishTypes } from '../definitions/types';
 
 export enum ValidationErrors {
   REQUIRED = 'This field is required',
@@ -26,37 +25,16 @@ const schema = yup.object({
   type: yup.string().required(ValidationErrors.REQUIRED),
   numBreadSlices: yup
     .number()
-    .when('type', {
-      is: DishTypes.SANDWICH,
-      then: yup
-        .number()
-        .typeError(ValidationErrors.REQUIRED)
-        .required(ValidationErrors.REQUIRED),
-    })
     .typeError(ValidationErrors.REQUIRED)
     .min(1, ValidationErrors.REQUIRED)
     .max(100, ValidationErrors.TOO_MANY_SLICES),
   numPizzaSlices: yup
     .number()
-    .when('type', {
-      is: DishTypes.PIZZA,
-      then: yup
-        .number()
-        .typeError(ValidationErrors.REQUIRED)
-        .required(ValidationErrors.REQUIRED),
-    })
     .typeError(ValidationErrors.REQUIRED)
     .min(1, ValidationErrors.REQUIRED)
     .max(100, ValidationErrors.TOO_MANY_SLICES),
   diameter: yup
     .number()
-    .when('type', {
-      is: DishTypes.PIZZA,
-      then: yup
-        .number()
-        .typeError(ValidationErrors.REQUIRED)
-        .required(ValidationErrors.REQUIRED),
-    })
     .typeError(ValidationErrors.REQUIRED)
     .min(12, ValidationErrors.INSUFFICIENT_DIAMATER)
     .max(42.5, ValidationErrors.DIAMETER_EXCEEDED),
