@@ -13,7 +13,7 @@ Alternatively, you can visit the following URL and try out the live demo yoursel
 | Node             | v16.13.0    |
 | NPM              | v8.1.0      |
 | Time to complete | 8 hours     |
-| Live demo        | 165.22.85.111:6000/ |
+| Live demo        | [165.22.85.111:6000/](165.22.85.111:3000/) |
 
 ## Technologies
 
