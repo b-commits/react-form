@@ -1,10 +1,8 @@
 import { Action, configureStore, ThunkAction } from '@reduxjs/toolkit';
-import counterReducer from '../features/counter/counterSlice';
 import dishReducer from '../features/dish/redux/dishSlice';
 
 export const store = configureStore({
   reducer: {
-    counter: counterReducer,
     dish: dishReducer,
   },
 });
