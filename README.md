@@ -6,13 +6,14 @@ In order to run the project, please clone the repo onto your local machine, navi
     npm start
 
 Alternatively, you can visit the following URL and try out the live demo yourself:
-[255.255.255.0](www.placeholder.ocm)
+[165.22.85.111:6000](http://165.22.85.111:6000)
 
 |                  | Description |
 | ---------------- | ----------- |
 | Node             | v16.13.0    |
 | NPM              | v8.1.0      |
 | Time to complete | 8 hours     |
+| Live demo        | [165.22.85.111:6000](http://165.22.85.111:6000) |
 
 ## Technologies
 
