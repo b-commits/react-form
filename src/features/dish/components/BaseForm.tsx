@@ -6,27 +6,41 @@ import { formWrapper, form } from './Dish.module.style';
 import { validationSchema } from './validation';
 import { FormProvider } from 'react-hook-form';
 import { useState } from 'react';
-import { DevTool } from '@hookform/devtools';
 import { postDish } from '../api/dishApi';
 import NameField from './formInputs/NameField';
 import PreparationTimeField from './formInputs/PreparationTimeField';
 import SpicinessField from './formInputs/SpicinessField';
 import DishTypeField from './formInputs/DishTypeField';
 import NumberField from './formInputs/NumberField';
+import SubmitMessage from './formInputs/SubmitMessage';
 
 const BaseForm = () => {
   const [submitting, isSubmitting] = useState<boolean>(false);
+  const [successful, isSuccessful] = useState<boolean>(false);
+
   const methods = useForm<Dish>({
     resolver: validationSchema,
     mode: 'onChange',
   });
   const type: DishTypes = methods.watch('type');
 
+  const handleSnackbarClosure = () => {
+    isSuccessful(false);
+  };
+
+  const resetValues: () => void = () => {
+    methods.reset();
+    methods.reset({ preparationTime: '' });
+    methods.unregister('type');
+    isSuccessful(false);
+  };
+
   const onSubmit: SubmitHandler<Dish> = async (data: Dish) => {
-    console.log('submitting');
+    isSuccessful(false);
     isSubmitting(true);
     await postDish(data);
     isSubmitting(false);
+    isSuccessful(true);
   };
 
   return (
@@ -62,17 +76,16 @@ const BaseForm = () => {
               Submit
             </Button>
           )}
-          <Button
-            variant="outlined"
-            fullWidth
-            onClick={() => {
-              methods.reset();
-            }}
-          >
+          <Button variant="outlined" fullWidth onClick={resetValues}>
             Reset
           </Button>
+          {successful && (
+            <SubmitMessage
+              successful
+              handleSnackbarClosure={handleSnackbarClosure}
+            />
+          )}
         </Stack>
-        <DevTool control={methods.control} />
       </form>
     </FormProvider>
   );

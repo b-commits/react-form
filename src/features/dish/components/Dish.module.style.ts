@@ -13,7 +13,10 @@ export const formLabel = css({
 
 export const form = css({
   height: '100%',
-  width: '45%',
+  '@media (max-width: 600px)': {
+    width: '85%',
+  },
+  width: '35%',
 });
 
 export const typeField = css({

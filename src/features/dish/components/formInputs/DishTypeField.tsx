@@ -2,13 +2,7 @@
 import { Controller, useFormContext } from 'react-hook-form';
 import { typeField } from '../Dish.module.style';
 import { Dish, DishTypes } from '../../definitions/types';
-import {
-  FormControl,
-  InputLabel,
-  Select,
-  MenuItem,
-  FormHelperText,
-} from '@mui/material';
+import { FormControl, InputLabel, Select, MenuItem } from '@mui/material';
 
 const DishTypeField = () => {
   const { control } = useFormContext<Dish>();
@@ -34,7 +28,6 @@ const DishTypeField = () => {
               <MenuItem value={DishTypes.SOUP}>Soup</MenuItem>
             </Select>
           </div>
-          {error && <FormHelperText>{error.message}</FormHelperText>}
         </FormControl>
       )}
     />

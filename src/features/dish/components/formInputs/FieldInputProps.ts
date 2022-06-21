@@ -8,3 +8,8 @@ export interface TextFieldInputProps {
 export type NumberFieldInputProps = TextFieldInputProps & {
   allowDecimal?: boolean;
 };
+
+export interface SubmitMessageProps {
+  successful: boolean;
+  handleSnackbarClosure: any;
+}

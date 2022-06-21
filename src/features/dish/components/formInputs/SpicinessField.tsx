@@ -43,7 +43,6 @@ const SpicinessField = () => {
             onChange={(e: Event) => onSliderValueChange(e, onChange)}
             sx={{
               color: getColor(sliderValue),
-              marginTop: '0px !important',
             }}
           />
         </>
