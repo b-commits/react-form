@@ -11,7 +11,6 @@ export enum ValidationErrors {
   MUST_BE_A_NUMBER = 'Must be a number',
   INSUFFICIENT_DIAMATER = 'This pizza needs to be bigger',
   DIAMETER_EXCEEDED = "Can't have this large of a pizza",
-  INTEGER = 'Please enter an integer',
 }
 
 const schema = yup.object({
@@ -27,7 +26,6 @@ const schema = yup.object({
   type: yup.string().required(ValidationErrors.REQUIRED),
   numBreadSlices: yup
     .number()
-    .integer(ValidationErrors.INTEGER)
     .when('type', {
       is: DishTypes.SANDWICH,
       then: yup
@@ -40,7 +38,6 @@ const schema = yup.object({
     .max(100, ValidationErrors.TOO_MANY_SLICES),
   numPizzaSlices: yup
     .number()
-    .integer(ValidationErrors.INTEGER)
     .when('type', {
       is: DishTypes.PIZZA,
       then: yup
