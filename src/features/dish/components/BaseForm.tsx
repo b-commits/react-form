@@ -7,6 +7,8 @@ import { validationSchema } from './validation';
 import { FormProvider } from 'react-hook-form';
 import { useState } from 'react';
 import { postDish } from '../api/dishApi';
+import { useAppDispatch } from '../../../app/hooks';
+import { addDish } from '../redux/dishSlice';
 import NameField from './formInputs/NameField';
 import PreparationTimeField from './formInputs/PreparationTimeField';
 import SpicinessField from './formInputs/SpicinessField';
@@ -17,6 +19,7 @@ import SubmitMessage from './formInputs/SubmitMessage';
 const BaseForm = () => {
   const [submitting, isSubmitting] = useState<boolean>(false);
   const [successful, isSuccessful] = useState<boolean>(false);
+  const dispatch = useAppDispatch();
 
   const methods = useForm<Dish>({
     resolver: validationSchema,
@@ -35,12 +38,13 @@ const BaseForm = () => {
     isSuccessful(false);
   };
 
-  const onSubmit: SubmitHandler<Dish> = async (data: Dish) => {
+  const onSubmit: SubmitHandler<Dish> = async (formData: Dish) => {
     isSuccessful(false);
     isSubmitting(true);
-    await postDish(data);
+    await postDish(formData);
     isSubmitting(false);
     isSuccessful(true);
+    dispatch(addDish(formData));
   };
 
   return (

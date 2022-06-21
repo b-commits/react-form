@@ -4,15 +4,8 @@ import { Dish, DishTypes } from '../definitions/types';
 
 export const BASE_SLICE_NAME: string = 'dish';
 
-export enum Status {
-  IDLE = 'idle',
-  LOADING = 'loading',
-  FAILED = 'failed',
-}
-
 export interface DishState {
-  value: Dish;
-  status: Status.IDLE | Status.LOADING | Status.FAILED;
+  dishes: Dish[];
 }
 
 const initialDish: Dish = {
@@ -24,22 +17,21 @@ const initialDish: Dish = {
 };
 
 const initialState: DishState = {
-  value: initialDish,
-  status: Status.IDLE,
+  dishes: [initialDish],
 };
 
 export const dishSlice = createSlice({
   name: BASE_SLICE_NAME,
   initialState,
   reducers: {
-    setName: (state: DishState, action: PayloadAction<string>) => {
-      state.value.name = action.payload;
+    addDish: (state: DishState, action: PayloadAction<Dish>) => {
+      state.dishes.push(action.payload);
     },
   },
 });
 
-export const { setName } = dishSlice.actions;
+export const { addDish } = dishSlice.actions;
 
-export const selectName = (state: RootState) => state.dish.value;
+export const selectDishes = (state: RootState) => state.dish.dishes;
 
 export default dishSlice.reducer;
