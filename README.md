@@ -22,3 +22,10 @@ Since [Redux Form ](https://redux-form.com/8.3.0/) appears to be deprecated and 
 ## Deployment
 
 The [Docker](https://www.docker.com/) container of this app is hosted on a [DigitalOcean](https://www.digitalocean.com/community) VPS.
+
+## Tests
+
+To run the example tests, please run:
+
+    npm run test
+
