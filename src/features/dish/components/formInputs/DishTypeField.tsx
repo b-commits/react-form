@@ -15,7 +15,7 @@ const DishTypeField = () => {
       render={({ field: { onChange, value }, fieldState: { error } }) => (
         <FormControl fullWidth size="small" error={!!error}>
           <InputLabel id="dish-type-select">Dish Type</InputLabel>
-          <div css={typeField}>
+          <form css={typeField}>
             <Select
               css={typeField}
               error={!!error}
@@ -28,7 +28,7 @@ const DishTypeField = () => {
               <MenuItem value={DishTypes.SANDWICH}>Sandwich</MenuItem>
               <MenuItem value={DishTypes.SOUP}>Soup</MenuItem>
             </Select>
-          </div>
+          </form>
         </FormControl>
       )}
     />

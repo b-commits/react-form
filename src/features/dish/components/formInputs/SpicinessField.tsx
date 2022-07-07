@@ -30,9 +30,9 @@ const SpicinessField = () => {
       control={control}
       render={({ field: { onChange }, fieldState: { error } }) => (
         <>
-          <div css={formLabel}>
+          <label css={formLabel}>
             <FormLabel error={!!error}>Spiciness</FormLabel>
-          </div>
+          </label>
           <Slider
             color="primary"
             valueLabelDisplay="auto"
